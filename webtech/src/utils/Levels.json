@@ -1,0 +1,92 @@
+[
+  {
+    "level": 1,
+    "question": "Ktorý tag označuje link?",
+    "helper": "a",
+    "answer": "<a></a>",
+    "wrongAnswer1": "<svg></svg>",
+    "wrongAnswer2": "<div></div>",
+    "isWin": false
+  },
+  {
+    "level": 2,
+    "question": "Ktorý tag slúži na hlavičku?",
+    "helper": "header",
+    "answer": "<header></header>",
+    "wrongAnswer1": "<div></div>",
+    "wrongAnswer2": "<footer></footer>",
+    "isWin": false
+  },
+  {
+    "level": 3,
+    "question": "Ktorý tag slúži na pätičku?",
+    "answer": "<footer></footer>",
+    "helper": "footer",
+    "wrongAnswer1": "<div></div>",
+    "wrongAnswer2": "<down></down>",
+    "isWin": false
+  },
+  {
+    "level": 4,
+    "question": "Ktorý tag slúži na implementáciu nášho kódu?",
+    "helper": "body",
+    "answer": "<body></body>",
+    "wrongAnswer1": "<head></head>",
+    "wrongAnswer2": "<script></script>",
+    "isWin": false
+  },
+  {
+    "level": 5,
+    "question": "Ktorý tag slúži na nadpis?",
+    "helper": "h",
+    "answer": "<h5></h5>",
+    "wrongAnswer1": "<p></p>",
+    "wrongAnswer2": "<div></div>",
+    "isWin": false
+  },
+  {
+    "level": 6,
+    "question": "Akým znakom označujeme id v css?",
+    "helper": "hashtag",
+    "answer": "#",
+    "wrongAnswer1": ".",
+    "wrongAnswer2": "@",
+    "isWin": false
+  },
+  {
+    "level": 7,
+    "question": "Akým znakom označujeme classu v css?",
+    "helper": "comma",
+    "answer": ".",
+    "wrongAnswer1": "@",
+    "wrongAnswer2": "#",
+    "isWin": false
+  },
+  {
+    "level": 8,
+    "question": "Ako zmením css v javascripte?",
+    "helper": "style",
+    "answer": "element.style.display = 'none';",
+    "wrongAnswer1": "element.display = 'none';",
+    "wrongAnswer2": "element.css.display = 'none';",
+    "isWin": false
+  },
+  {
+    "level": 9,
+    "question": "Ktorý selektor je správny pre id?",
+    "helper": "Check selector",
+    "answer": "document.getElementById('id');",
+    "wrongAnswer1": "document.querySelector('id');",
+    "wrongAnswer2": "document.getElementById('#id');",
+    "isWin": false
+  },
+  {
+    "level": 10,
+    "question": "Ktorý selektor je správny pre classu?",
+    "helper": "Check selector",
+    "answer": "document.querySelector('class');",
+    "wrongAnswer1": "document.querySelector('.class');",
+    "wrongAnswer2": "document.getElementById('class');",
+    "isWin": false
+  }
+]
