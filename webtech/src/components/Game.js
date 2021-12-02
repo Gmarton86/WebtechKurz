@@ -13,13 +13,13 @@ function Game() {
         </div>
         <div className="flex-1">
           <div className="flex flex-row justify-center align-center relative text-white">
-            <div className="bg-gray-900 h-24 w-24 d-block mr-6 p-5 rounded-md">
+            <div className="bg-gray-900 h-24 w-24 d-block mr-6 p-5 text-center rounded-md">
               {data[0].wrongAnswer1}
             </div>
-            <div className="bg-gray-900 h-24 w-24 d-block mr-6 p-5 rounded-md">
+            <div className="bg-gray-900 h-24 w-24 d-block mr-6 p-5 text-center rounded-md">
               {data[0].wrongAnswer2}
             </div>
-            <div className="bg-gray-900 h-24 w-24 d-block p-5 rounded-md">
+            <div className="bg-gray-900 h-24 w-24 d-block p-5 text-center rounded-md">
               {data[0].answer}
             </div>
           </div>
