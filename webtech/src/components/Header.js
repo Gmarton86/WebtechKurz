@@ -4,7 +4,7 @@ export default function Header() {
   return (
     <div>
       <header className="text-white">
-        <nav className="flex items-center justify-between flex-wrap bg-teal-500 p-6">
+        <nav className="flex flex-wrap bg-teal-500 p-6 flex-col">
           <div className="flex items-center flex-shrink-0  mr-6">
             <svg
               className="fill-current h-8 w-8 mr-2"
@@ -17,23 +17,23 @@ export default function Header() {
             </svg>
             <span className="font-semibold text-xl tracking-tight">Webové technológie kurz</span>
           </div>
-          <div className="w-full block flex-grow lg:flex lg:items-center lg:w-auto">
-            <div className="text-sm lg:flex-grow">
+          <div className="flex flex-col">
+            <div className="text-sm flex flex-col pt-4">
               <a
                 href="#responsive-header"
-                className="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-purple-500 mr-4"
+                className="mt-4 lg:mt-0 text-teal-200 hover:text-purple-500 mr-4"
               >
                 Úroveň:
               </a>
               <a
                 href="#responsive-header"
-                className="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-purple-500 mr-4"
+                className="mt-4 pt-1 lg:mt-0 text-teal-200 hover:text-purple-500 mr-4"
               >
                 Pomôcka:
               </a>
               <a
                 href="#responsive-header"
-                className="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-purple-500"
+                className="mt-4 pt-1 lg:mt-0 text-teal-200 hover:text-purple-500"
               >
                 Počet splnených úloh:
               </a>
