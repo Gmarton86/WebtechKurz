@@ -28,7 +28,7 @@
         "workbox-streams": "^5.1.4"
     },
     "scripts": {
-        "start": "craco start",
+        "start": "craco start & npx json-server -p 8000 -w src/utils/Levels.json",
         "build": "craco build",
         "test": "craco test",
         "eject": "react-scripts eject"
@@ -54,6 +54,8 @@
     "devDependencies": {
         "@types/react-beautiful-dnd": "^13.1.2",
         "autoprefixer": "^9.8.8",
+        "axios": "^0.24.0",
+        "browserify-fs": "^1.0.0",
         "postcss": "^7.0.39",
         "react-beautiful-dnd": "^13.1.0",
         "react-router-dom": "^6.0.2",

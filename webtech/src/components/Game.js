@@ -38,9 +38,9 @@
 
 // export default Game
 
-import  { useState } from 'react'
-
+import { useState, useEffect } from 'react'
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd'
+import axios from '../api/level'
 
 // fake data generator
 const getItems = (count, offset = 0) =>
@@ -94,7 +94,40 @@ const getListStyle = (isDraggingOver) => ({
 })
 
 function Game() {
-  const [state, setState] = useState([getItems(5), getItems(0)])
+  const [state, setState] = useState([getItems(5), []])
+  var data = []
+
+  //Retrieve levels
+  const retrieveLevels = async () => {
+    const response = await axios.get('/levels')
+    data = response.data
+    console.log(data)
+    findLevel()
+  }
+
+  const updateLevel = async (level) => {
+    const response = await axios.put(`/levels/${level.id}`, level)
+    console.log(response.data)
+  }
+
+  useEffect(() => {
+    retrieveLevels()
+  })
+
+  function generateNewLevel() {
+    let unplayedLevels = data.filter((lvl) => lvl.isWin === false)
+    const randomLvl = Math.floor(Math.random() * (unplayedLevels.length - 1))
+    return unplayedLevels[randomLvl]
+  }
+
+  function findLevel() {
+    let currentLevel = data.find((lvl) => lvl.isActive === true)
+    if (currentLevel === undefined) {
+      currentLevel = generateNewLevel()
+      currentLevel.isActive = true
+      updateLevel(currentLevel)
+    }
+  }
 
   function onDragEnd(result) {
     const { source, destination } = result
@@ -146,14 +179,7 @@ function Game() {
                           {...provided.dragHandleProps}
                           style={getItemStyle(snapshot.isDragging, provided.draggableProps.style)}
                         >
-                          <div
-                            style={{
-                              display: 'flex',
-                              justifyContent: 'space-around',
-                            }}
-                          >
-                            {item.content}
-                          </div>
+                          <div className="flex justify-around">{item.content}</div>
                         </div>
                       )}
                     </Draggable>
