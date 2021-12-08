@@ -1,104 +1,82 @@
-{
-  "levels": [
-    {
-      "id": 1,
-      "question": "Ktorý tag označuje link?",
-      "helper": "a",
-      "answer": "<a></a>",
-      "wrongAnswer1": "<svg></svg>",
-      "wrongAnswer2": "<div></div>",
-      "isWin": false,
-      "isActive": false
-    },
-    {
-      "id": 2,
-      "question": "Ktorý tag slúži na hlavičku?",
-      "helper": "header",
-      "answer": "<header></header>",
-      "wrongAnswer1": "<div></div>",
-      "wrongAnswer2": "<footer></footer>",
-      "isWin": false,
-      "isActive": false
-    },
-    {
-      "id": 3,
-      "question": "Ktorý tag slúži na pätičku?",
-      "answer": "<footer></footer>",
-      "helper": "footer",
-      "wrongAnswer1": "<div></div>",
-      "wrongAnswer2": "<down></down>",
-      "isWin": false,
-      "isActive": false
-    },
-    {
-      "id": 4,
-      "question": "Ktorý tag slúži na implementáciu nášho kódu?",
-      "helper": "body",
-      "answer": "<body></body>",
-      "wrongAnswer1": "<head></head>",
-      "wrongAnswer2": "<script></script>",
-      "isWin": false,
-      "isActive": false
-    },
-    {
-      "id": 5,
-      "question": "Ktorý tag slúži na nadpis?",
-      "helper": "h",
-      "answer": "<h5></h5>",
-      "wrongAnswer1": "<p></p>",
-      "wrongAnswer2": "<div></div>",
-      "isWin": false,
-      "isActive": false
-    },
-    {
-      "id": 6,
-      "question": "Akým znakom označujeme id v css?",
-      "helper": "hashtag",
-      "answer": "#",
-      "wrongAnswer1": ".",
-      "wrongAnswer2": "@",
-      "isWin": false,
-      "isActive": false
-    },
-    {
-      "id": 7,
-      "question": "Akým znakom označujeme classu v css?",
-      "helper": "comma",
-      "answer": ".",
-      "wrongAnswer1": "@",
-      "wrongAnswer2": "#",
-      "isWin": false,
-      "isActive": true
-    },
-    {
-      "id": 8,
-      "question": "Ako zmením css v javascripte?",
-      "helper": "style",
-      "answer": "element.style.display = 'none';",
-      "wrongAnswer1": "element.display = 'none';",
-      "wrongAnswer2": "element.css.display = 'none';",
-      "isWin": false,
-      "isActive": false
-    },
-    {
-      "id": 9,
-      "question": "Ktorý selektor je správny pre id?",
-      "helper": "Check selector",
-      "answer": "document.getElementById('id');",
-      "wrongAnswer1": "document.querySelector('id');",
-      "wrongAnswer2": "document.getElementById('#id');",
-      "isWin": false,
-      "isActive": false
-    },
-    {
-      "id": 10,
-      "question": "Ktorý selektor je správny pre classu?",
-      "helper": "Check selector",
-      "answer": "document.querySelector('class');",
-      "wrongAnswer1": "document.querySelector('.class');",
-      "wrongAnswer2": "document.getElementById('class');",
-      "isWin": false,
-      "isActive": false
-    }
-  ]
-}
+[
+  {
+    "id": 1,
+    "question": "Ktorý tag označuje link?",
+    "helper": "a",
+    "answer": "<a></a>",
+    "wrongAnswer1": "<svg></svg>",
+    "wrongAnswer2": "<div></div>"
+  },
+  {
+    "id": 2,
+    "question": "Ktorý tag slúži na hlavičku?",
+    "helper": "header",
+    "answer": "<header></header>",
+    "wrongAnswer1": "<div></div>",
+    "wrongAnswer2": "<footer></footer>"
+  },
+  {
+    "id": 3,
+    "question": "Ktorý tag slúži na pätičku?",
+    "answer": "<footer></footer>",
+    "helper": "footer",
+    "wrongAnswer1": "<div></div>",
+    "wrongAnswer2": "<down></down>"
+  },
+  {
+    "id": 4,
+    "question": "Ktorý tag slúži na implementáciu nášho kódu?",
+    "helper": "body",
+    "answer": "<body></body>",
+    "wrongAnswer1": "<head></head>",
+    "wrongAnswer2": "<script></script>"
+  },
+  {
+    "id": 5,
+    "question": "Ktorý tag slúži na nadpis?",
+    "helper": "h",
+    "answer": "<h5></h5>",
+    "wrongAnswer1": "<p></p>",
+    "wrongAnswer2": "<div></div>"
+  },
+  {
+    "id": 6,
+    "question": "Akým znakom označujeme id v css?",
+    "helper": "hashtag",
+    "answer": "#",
+    "wrongAnswer1": ".",
+    "wrongAnswer2": "@"
+  },
+  {
+    "id": 7,
+    "question": "Akým znakom označujeme classu v css?",
+    "helper": "comma",
+    "answer": ".",
+    "wrongAnswer1": "@",
+    "wrongAnswer2": "#"
+  },
+  {
+    "id": 8,
+    "question": "Ako zmením css v javascripte?",
+    "helper": "style",
+    "answer": "element.style.display = 'none';",
+    "wrongAnswer1": "element.display = 'none';",
+    "wrongAnswer2": "element.css.display = 'none';"
+  },
+  {
+    "id": 9,
+    "question": "Ktorý selektor je správny pre id?",
+    "helper": "Check selector",
+    "answer": "document.getElementById('id');",
+    "wrongAnswer1": "document.querySelector('id');",
+    "wrongAnswer2": "document.getElementById('#id');"
+  },
+  {
+    "id": 10,
+    "question": "Ktorý selektor je správny pre classu?",
+    "helper": "Check selector",
+    "answer": "document.querySelector('class');",
+    "wrongAnswer1": "document.querySelector('.class');",
+    "wrongAnswer2": "document.getElementById('class');"
+  }
+]

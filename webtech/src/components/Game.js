@@ -1,46 +1,5 @@
-// import { Draggable } from 'react-beautiful-dnd'
-
-// function Game() {
-//   var data = require('../utils/Levels.json')
-
-//   return (
-//     <div className="mr-6 ml-6 p-2 bg-gray-300 border-4 rounded-md flex align-center justify-center flex-col">
-//       <div className="font-bold flex-1 text-center">
-//         <p>{data[1].question}</p>
-//       </div>
-//       <div className="flex-1 self-center m-5">
-//         <div className="bg-yellow-50 h-24 w-24 d-block rounded-md"></div>
-//       </div>
-//       <div className="flex-1">
-//         <div className="flex flex-row justify-center align-center relative text-white">
-//           <div className="bg-gray-900 h-24 w-24 d-block mr-6 text-center rounded-md">
-//             {data[1].wrongAnswer1}
-//           </div>
-
-//           <div className="bg-gray-900 h-24 w-24 d-block mr-6 text-center rounded-md">
-//             {data[1].wrongAnswer2}
-//           </div>
-//           <div className="bg-gray-900 h-24 w-24 d-block text-center rounded-md">
-//             {data[1].answer}
-//           </div>
-//         </div>
-//         <Draggable key={1} draggableId={1} index={1}>
-//           {(provided, snapshot) => (
-//             <div ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps}>
-//               Drag me!
-//             </div>
-//           )}
-//         </Draggable>
-//       </div>
-//     </div>
-//   )
-// }
-
-// export default Game
-
 import { useState, useEffect } from 'react'
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd'
-import axios from '../api/level'
 
 // fake data generator
 const getItems = (count, offset = 0) =>
@@ -95,38 +54,43 @@ const getListStyle = (isDraggingOver) => ({
 
 function Game() {
   const [state, setState] = useState([getItems(5), []])
-  var data = []
-
-  //Retrieve levels
-  const retrieveLevels = async () => {
-    const response = await axios.get('/levels')
-    data = response.data
-    console.log(data)
-    findLevel()
-  }
-
-  const updateLevel = async (level) => {
-    const response = await axios.put(`/levels/${level.id}`, level)
-    console.log(response.data)
-  }
+  var completedLevels = []
+  var data = require('../utils/Levels.json')
+  var currentLevel
 
   useEffect(() => {
-    retrieveLevels()
+    setStates()
+    console.log('completed levels', completedLevels)
+    console.log('current level: ', currentLevel)
   })
 
-  function generateNewLevel() {
-    let unplayedLevels = data.filter((lvl) => lvl.isWin === false)
-    const randomLvl = Math.floor(Math.random() * (unplayedLevels.length - 1))
-    return unplayedLevels[randomLvl]
+  function getCompletedLevels() {
+    completedLevels = localStorage.getItem('CompletedLevels')
   }
 
-  function findLevel() {
-    let currentLevel = data.find((lvl) => lvl.isActive === true)
-    if (currentLevel === undefined) {
+  function setStates() {
+    getCompletedLevels()
+    currentLevel = localStorage.getItem('ActiveLevel')
+    if (!currentLevel) {
       currentLevel = generateNewLevel()
-      currentLevel.isActive = true
-      updateLevel(currentLevel)
+      localStorage.setItem('ActiveLevel', currentLevel)
     }
+  }
+
+  function generateNewLevel() {
+    let randomLvl = Math.floor(Math.random() * (data.length - 1))
+    if(completedLevels) {
+      var result = completedLevels.find((item) => item === randomLvl)
+      while (result !== undefined) {
+        if (completedLevels.length < data.length) {
+          randomLvl = Math.floor(Math.random() * (data.length - 1))
+          result = completedLevels.find((item) => item === randomLvl)
+        } else {
+          break
+        }
+      }
+    }
+    return randomLvl
   }
 
   function onDragEnd(result) {

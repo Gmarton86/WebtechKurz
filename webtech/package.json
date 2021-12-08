@@ -28,7 +28,7 @@
         "workbox-streams": "^5.1.4"
     },
     "scripts": {
-        "start": "craco start & npx json-server -p 8000 -w src/utils/Levels.json",
+        "start": "craco start",
         "build": "craco build",
         "test": "craco test",
         "eject": "react-scripts eject"
