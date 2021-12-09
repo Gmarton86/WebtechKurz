@@ -1,5 +1,14 @@
 import { useState, useEffect } from 'react'
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd'
+import { useDispatch, useSelector } from 'react-redux'
+import {
+  setId,
+  setAnswer,
+  setHelper,
+  setQuestion,
+  setWrongAnswer1,
+  setWrongAnswer2,
+} from '../redux/actions'
 
 // fake data generator
 const getItems = (count, offset = 0) =>
@@ -57,12 +66,26 @@ function Game() {
   var completedLevels = []
   var data = require('../utils/Levels.json')
   var currentLevel
+  const { id, question, helper, answer, wrongAnswer1, wrongAnswer2 } = useSelector(
+    (state) => state.levelReducer,
+  )
+  const dispatch = useDispatch()
 
   useEffect(() => {
     setStates()
     console.log('completed levels', completedLevels)
     console.log('current level: ', currentLevel)
   })
+
+  function setReduxLevel() {
+    dispatch(setId(data[currentLevel - 1].id))
+    dispatch(setQuestion(data[currentLevel - 1].question))
+    dispatch(setHelper(data[currentLevel - 1].helper))
+    dispatch(setAnswer(data[currentLevel - 1].answer))
+    dispatch(setWrongAnswer1(data[currentLevel - 1].wrongAnswer1))
+    dispatch(setWrongAnswer2(data[currentLevel - 1].wrongAnswer2))
+  }
+
 
   function getCompletedLevels() {
     completedLevels = localStorage.getItem('CompletedLevels')
@@ -79,11 +102,12 @@ function Game() {
 
   function generateNewLevel() {
     let randomLvl = Math.floor(Math.random() * (data.length - 1))
-    if(completedLevels) {
+    if (completedLevels) {
       var result = completedLevels.find((item) => item === randomLvl)
       while (result !== undefined) {
         if (completedLevels.length < data.length) {
           randomLvl = Math.floor(Math.random() * (data.length - 1))
+          // eslint-disable-next-line no-loop-func
           result = completedLevels.find((item) => item === randomLvl)
         } else {
           break

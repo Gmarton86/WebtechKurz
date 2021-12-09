@@ -1,6 +1,25 @@
 import React from 'react'
+import { useSelector } from 'react-redux'
+import { useState, useEffect } from 'react'
 
 export default function Header() {
+  const { id, helper } = useSelector((state) => state.levelReducer)
+  const [completed, setCompleted] = useState()
+  var completedLevels
+
+  useEffect(() => {
+    getCompleted()
+  })
+
+  function getCompleted() {
+    completedLevels = localStorage.getItem('CompletedLevels')
+    if(completedLevels) {
+      setCompleted(completedLevels.length)
+    } else {
+      setCompleted(0)
+    }
+  }
+
   return (
     <div>
       <header className="text-white">
@@ -23,19 +42,19 @@ export default function Header() {
                 href="#responsive-header"
                 className="mt-4 lg:mt-0 text-teal-200 hover:text-purple-500 mr-4"
               >
-                Úroveň:
+                Úroveň: {id + 1}
               </a>
               <a
                 href="#responsive-header"
                 className="mt-4 pt-1 lg:mt-0 text-teal-200 hover:text-purple-500 mr-4"
               >
-                Pomôcka:
+                Pomôcka: {helper}
               </a>
               <a
                 href="#responsive-header"
                 className="mt-4 pt-1 lg:mt-0 text-teal-200 hover:text-purple-500"
               >
-                Počet splnených úloh:
+                Počet splnených úloh: {completed}/10
               </a>
             </div>
           </div>

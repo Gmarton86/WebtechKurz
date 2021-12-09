@@ -1,6 +1,7 @@
-import { configureStore } from '@reduxjs/toolkit'
-import level from './level'
+import { createStore, combineReducers, applyMiddleware } from 'redux'
+import thunk from 'redux-thunk'
+import levelReducer from './reducers'
 
-export default configureStore({
-  reducer: level,
-})
+const rootReducer = combineReducers({ levelReducer })
+
+export const Store = createStore(rootReducer, applyMiddleware(thunk))
