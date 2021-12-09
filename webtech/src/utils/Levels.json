@@ -57,26 +57,26 @@
   },
   {
     "id": 8,
-    "question": "Ako zmením css v javascripte?",
-    "helper": "style",
-    "answer": "element.style.display = 'none';",
-    "wrongAnswer1": "element.display = 'none';",
-    "wrongAnswer2": "element.css.display = 'none';"
+    "question": "Aký ma JQuery znak?",
+    "helper": "$",
+    "answer": "$",
+    "wrongAnswer1": "%",
+    "wrongAnswer2": "&"
   },
   {
     "id": 9,
-    "question": "Ktorý selektor je správny pre id?",
-    "helper": "Check selector",
-    "answer": "document.getElementById('id');",
-    "wrongAnswer1": "document.querySelector('id');",
-    "wrongAnswer2": "document.getElementById('#id');"
+    "question": "Vyber správny JQuery selektor",
+    "helper": "$('')",
+    "answer": "$('#id')",
+    "wrongAnswer1": "('#id')",
+    "wrongAnswer2": "$('id')"
   },
   {
     "id": 10,
     "question": "Ktorý selektor je správny pre classu?",
     "helper": "Check selector",
-    "answer": "document.querySelector('.class');",
-    "wrongAnswer1": "document.querySelector('class');",
-    "wrongAnswer2": "document.getElementById('class');"
+    "answer": "$('.id')",
+    "wrongAnswer1": "$('#id')",
+    "wrongAnswer2": "$('@id')"
   }
 ]

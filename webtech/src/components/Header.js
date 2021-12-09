@@ -1,6 +1,7 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
 import { useState, useEffect } from 'react'
+import Footer from '../components/Footer'
 
 export default function Header() {
   const { id, helper } = useSelector((state) => state.levelReducer)
@@ -60,6 +61,7 @@ export default function Header() {
           </div>
         </nav>
       </header>
+      <footer>{hover ? <Footer /> : ''}</footer>
     </div>
   )
 }

@@ -67,7 +67,6 @@ function Game() {
   }, [])
 
   function setReduxLevel() {
-    
     dispatch(setId(data[currentLevel].id))
     dispatch(setQuestion(data[currentLevel].question))
     dispatch(setHelper(data[currentLevel].helper))
@@ -75,7 +74,6 @@ function Game() {
     dispatch(setWrongAnswer1(data[currentLevel].wrongAnswer1))
     dispatch(setWrongAnswer2(data[currentLevel].wrongAnswer2))
     dispatch(setAnswers([createArrayOfAnswers(), []]))
-    
   }
 
   function createArrayOfAnswers() {
