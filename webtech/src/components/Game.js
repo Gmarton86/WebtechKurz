@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useEffect } from 'react'
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd'
 import { useDispatch, useSelector } from 'react-redux'
 import {
@@ -8,14 +8,9 @@ import {
   setQuestion,
   setWrongAnswer1,
   setWrongAnswer2,
+  setAnswers,
 } from '../redux/actions'
 
-// fake data generator
-const getItems = (count, offset = 0) =>
-  Array.from({ length: count }, (v, k) => k).map((k) => ({
-    id: `item-${k + offset}-${new Date().getTime()}`,
-    content: `item ${k + offset}`,
-  }))
 
 const reorder = (list, startIndex, endIndex) => {
   const result = Array.from(list)
@@ -62,30 +57,47 @@ const getListStyle = (isDraggingOver) => ({
 })
 
 function Game() {
-  const [state, setState] = useState([getItems(5), []])
+  // const [answers, setState] = useState([getItems(5), []])
   var completedLevels = []
   var data = require('../utils/Levels.json')
   var currentLevel
-  const { id, question, helper, answer, wrongAnswer1, wrongAnswer2 } = useSelector(
+  const { question, answers } = useSelector(
     (state) => state.levelReducer,
   )
   const dispatch = useDispatch()
 
+  //  const [state, setState] = useState([
+  //    answers,
+  //    [],
+  //  ])
   useEffect(() => {
     setStates()
     console.log('completed levels', completedLevels)
     console.log('current level: ', currentLevel)
-  })
+    setReduxLevel()
 
-  function setReduxLevel() {
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
+  async function setReduxLevel() {
     dispatch(setId(data[currentLevel - 1].id))
     dispatch(setQuestion(data[currentLevel - 1].question))
     dispatch(setHelper(data[currentLevel - 1].helper))
     dispatch(setAnswer(data[currentLevel - 1].answer))
     dispatch(setWrongAnswer1(data[currentLevel - 1].wrongAnswer1))
     dispatch(setWrongAnswer2(data[currentLevel - 1].wrongAnswer2))
+    dispatch(setAnswers([createArrayOfAnswers(), []]))
   }
 
+  function createArrayOfAnswers() {
+    let answers = [
+      { id: '0', content: data[currentLevel - 1].answer },
+      { id: '1', content: data[currentLevel - 1].wrongAnswer1 },
+      { id: '2', content: data[currentLevel - 1].wrongAnswer2 },
+    ]
+    answers.sort(() => 0.2 - Math.random())
+    return answers
+  }
 
   function getCompletedLevels() {
     completedLevels = localStorage.getItem('CompletedLevels')
@@ -128,28 +140,29 @@ function Game() {
     const dInd = +destination.droppableId
 
     if (sInd === dInd) {
-      const items = reorder(state[sInd], source.index, destination.index)
-      const newState = [...state]
+      const items = reorder(answers[sInd], source.index, destination.index)
+      const newState = [...answers]
       newState[sInd] = items
-      setState(newState)
+      // setState(newState)
+      dispatch(setAnswers(newState))
     } else {
-      const result = move(state[sInd], state[dInd], source, destination)
-      const newState = [...state]
+      const result = move(answers[sInd], answers[dInd], source, destination)
+      const newState = [...answers]
       newState[sInd] = result[sInd]
       newState[dInd] = result[dInd]
-
-      setState(newState.filter((group) => group.length))
+      dispatch(setAnswers(newState.filter((group) => group.length)))
+      // setState(newState.filter((group) => group.length))
     }
   }
 
   return (
     <div className="mr-6 ml-6 p-2 bg-gray-900 border-4 rounded-md flex align-center justify-center flex-col">
       <div className="font-bold flex-1 text-center mb-2 text-white">
-        <p>Is it ok?</p>
+        <p>{question}</p>
       </div>
       <div className="flex align-center justify-center">
         <DragDropContext onDragEnd={onDragEnd}>
-          {state.map((el, ind) => (
+          {answers.map((el, ind) => (
             <Droppable key={ind} droppableId={`${ind}`}>
               {(provided, snapshot) => (
                 <div

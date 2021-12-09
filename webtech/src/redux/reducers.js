@@ -5,6 +5,7 @@ import {
   SET_ANSWER,
   SET_WRONG_ANSWER_1,
   SET_WRONG_ANSWER_2,
+  SET_ANSWERS,
 } from './actions'
 
 const initialState = {
@@ -14,6 +15,7 @@ const initialState = {
   answer: '',
   wrongAnswer1: '',
   wrongAnswer2: '',
+  answers: [[], []],
 }
 
 function levelReducer(state = initialState, action) {
@@ -30,6 +32,8 @@ function levelReducer(state = initialState, action) {
       return { ...state, wrongAnswer1: action.payload }
     case SET_WRONG_ANSWER_2:
       return { ...state, wrongAnswer2: action.payload }
+    case SET_ANSWERS:
+      return { ...state, answers: action.payload }
     default:
       return state
   }

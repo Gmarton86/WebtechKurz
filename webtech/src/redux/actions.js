@@ -4,6 +4,7 @@ export const SET_HELPER = 'SET_HELPER'
 export const SET_ANSWER = 'SET_ANSWER'
 export const SET_WRONG_ANSWER_1 = 'SET_WRONG_ANSWER_1'
 export const SET_WRONG_ANSWER_2 = 'SET_WRONG_ANSWER_2'
+export const SET_ANSWERS = 'SET_ANSWERS'
 
 export const setId = (id) => (dispatch) => {
   dispatch({
@@ -44,5 +45,12 @@ export const setWrongAnswer2 = (wrongAnswer2) => (dispatch) => {
   dispatch({
     type: SET_WRONG_ANSWER_2,
     payload: wrongAnswer2,
+  })
+}
+
+export const setAnswers = (answers) => (dispatch) => {
+  dispatch({
+    type: SET_ANSWERS,
+    payload: answers,
   })
 }
