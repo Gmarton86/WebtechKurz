@@ -11,7 +11,6 @@ import {
   setAnswers,
 } from '../redux/actions'
 
-
 const reorder = (list, startIndex, endIndex) => {
   const result = Array.from(list)
   const [removed] = result.splice(startIndex, 1)
@@ -50,6 +49,7 @@ const getItemStyle = (isDragging, draggableStyle) => ({
   // styles we need to apply on draggables
   ...draggableStyle,
 })
+
 const getListStyle = (isDraggingOver) => ({
   background: isDraggingOver ? 'lightblue' : 'lightgrey',
   padding: grid,
@@ -57,50 +57,48 @@ const getListStyle = (isDraggingOver) => ({
 })
 
 function Game() {
-  // const [answers, setState] = useState([getItems(5), []])
   var completedLevels = []
   var data = require('../utils/Levels.json')
   var currentLevel
-  const { question, answers } = useSelector(
-    (state) => state.levelReducer,
-  )
+  const { question, answers } = useSelector((state) => state.levelReducer)
   const dispatch = useDispatch()
 
-  //  const [state, setState] = useState([
-  //    answers,
-  //    [],
-  //  ])
   useEffect(() => {
     setStates()
-    console.log('completed levels', completedLevels)
+    console.log(completedLevels)
     console.log('current level: ', currentLevel)
     setReduxLevel()
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
-  async function setReduxLevel() {
-    dispatch(setId(data[currentLevel - 1].id))
-    dispatch(setQuestion(data[currentLevel - 1].question))
-    dispatch(setHelper(data[currentLevel - 1].helper))
-    dispatch(setAnswer(data[currentLevel - 1].answer))
-    dispatch(setWrongAnswer1(data[currentLevel - 1].wrongAnswer1))
-    dispatch(setWrongAnswer2(data[currentLevel - 1].wrongAnswer2))
+  function setReduxLevel() {
+    console.log(currentLevel)
+    dispatch(setId(data[currentLevel].id))
+    dispatch(setQuestion(data[currentLevel].question))
+    dispatch(setHelper(data[currentLevel].helper))
+    dispatch(setAnswer(data[currentLevel].answer))
+    dispatch(setWrongAnswer1(data[currentLevel].wrongAnswer1))
+    dispatch(setWrongAnswer2(data[currentLevel].wrongAnswer2))
     dispatch(setAnswers([createArrayOfAnswers(), []]))
+    console.log(currentLevel)
   }
 
   function createArrayOfAnswers() {
     let answers = [
-      { id: '0', content: data[currentLevel - 1].answer },
-      { id: '1', content: data[currentLevel - 1].wrongAnswer1 },
-      { id: '2', content: data[currentLevel - 1].wrongAnswer2 },
+      { id: '0', content: data[currentLevel].answer },
+      { id: '1', content: data[currentLevel].wrongAnswer1 },
+      { id: '2', content: data[currentLevel].wrongAnswer2 },
     ]
-    answers.sort(() => 0.2 - Math.random())
+    answers.sort(() => Math.random() - 0.5)
     return answers
   }
 
   function getCompletedLevels() {
-    completedLevels = localStorage.getItem('CompletedLevels')
+    completedLevels = JSON.parse(localStorage.getItem('CompletedLevels'))
+    if (completedLevels === null) {
+      completedLevels = []
+    }
   }
 
   function setStates() {
@@ -113,12 +111,13 @@ function Game() {
   }
 
   function generateNewLevel() {
-    let randomLvl = Math.floor(Math.random() * (data.length - 1))
+    let randomLvl = Math.floor(Math.random() * data.length)
     if (completedLevels) {
       var result = completedLevels.find((item) => item === randomLvl)
       while (result !== undefined) {
-        if (completedLevels.length < data.length) {
-          randomLvl = Math.floor(Math.random() * (data.length - 1))
+        console.log(completedLevels.length + ' = ' + data.length)
+        if (completedLevels.length <= data.length) {
+          randomLvl = Math.floor(Math.random() * data.length)
           // eslint-disable-next-line no-loop-func
           result = completedLevels.find((item) => item === randomLvl)
         } else {
@@ -127,6 +126,20 @@ function Game() {
       }
     }
     return randomLvl
+  }
+
+  function setNextLevel() {
+    getCompletedLevels()
+    completedLevels.push(parseInt(localStorage.getItem('ActiveLevel')))
+    if (completedLevels.length === data.length) {
+      localStorage.removeItem('CompletedLevels')
+      completedLevels = []
+    }
+    currentLevel = generateNewLevel()
+    localStorage.setItem('ActiveLevel', currentLevel)
+    localStorage.setItem('CompletedLevels', JSON.stringify(completedLevels))
+
+    setReduxLevel()
   }
 
   function onDragEnd(result) {
@@ -146,12 +159,19 @@ function Game() {
       // setState(newState)
       dispatch(setAnswers(newState))
     } else {
-      const result = move(answers[sInd], answers[dInd], source, destination)
-      const newState = [...answers]
-      newState[sInd] = result[sInd]
-      newState[dInd] = result[dInd]
-      dispatch(setAnswers(newState.filter((group) => group.length)))
-      // setState(newState.filter((group) => group.length))
+      const clone = Array.from(answers[sInd])
+
+      if (clone.splice(source.index, 1)[0].id === '0') {
+        const result = move(answers[sInd], answers[dInd], source, destination)
+        const newState = [...answers]
+        newState[sInd] = result[sInd]
+        newState[dInd] = result[dInd]
+        dispatch(setAnswers(newState.filter((group) => group.length)))
+        setNextLevel()
+      } else {
+        return
+      }
+
     }
   }
 

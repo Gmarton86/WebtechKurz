@@ -5,6 +5,7 @@ import { useState, useEffect } from 'react'
 export default function Header() {
   const { id, helper } = useSelector((state) => state.levelReducer)
   const [completed, setCompleted] = useState()
+  const [hover, setHover] = useState(false)
   var completedLevels
 
   useEffect(() => {
@@ -12,12 +13,16 @@ export default function Header() {
   })
 
   function getCompleted() {
-    completedLevels = localStorage.getItem('CompletedLevels')
+    completedLevels = JSON.parse(localStorage.getItem('CompletedLevels'))
     if(completedLevels) {
       setCompleted(completedLevels.length)
     } else {
       setCompleted(0)
     }
+  }
+
+  function onHover() {
+    setHover(!hover)
   }
 
   return (
@@ -38,24 +43,19 @@ export default function Header() {
           </div>
           <div className="flex flex-col">
             <div className="text-sm flex flex-col pt-4">
-              <a
-                href="#responsive-header"
-                className="mt-4 lg:mt-0 text-teal-200 hover:text-purple-500 mr-4"
-              >
+              <p className="mt-4 lg:mt-0 text-teal-200 hover:text-purple-500 mr-4">
                 Úroveň: {id + 1}
-              </a>
-              <a
-                href="#responsive-header"
+              </p>
+              <p
+                onMouseEnter={onHover}
+                onMouseLeave={onHover}
                 className="mt-4 pt-1 lg:mt-0 text-teal-200 hover:text-purple-500 mr-4"
               >
-                Pomôcka: {helper}
-              </a>
-              <a
-                href="#responsive-header"
-                className="mt-4 pt-1 lg:mt-0 text-teal-200 hover:text-purple-500"
-              >
+                Pomôcka: {hover ? helper : ''}
+              </p>
+              <p className="mt-4 pt-1 lg:mt-0 text-teal-200 hover:text-purple-500">
                 Počet splnených úloh: {completed}/10
-              </a>
+              </p>
             </div>
           </div>
         </nav>

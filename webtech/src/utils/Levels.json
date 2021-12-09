@@ -75,8 +75,8 @@
     "id": 10,
     "question": "Ktorý selektor je správny pre classu?",
     "helper": "Check selector",
-    "answer": "document.querySelector('class');",
-    "wrongAnswer1": "document.querySelector('.class');",
+    "answer": "document.querySelector('.class');",
+    "wrongAnswer1": "document.querySelector('class');",
     "wrongAnswer2": "document.getElementById('class');"
   }
 ]
