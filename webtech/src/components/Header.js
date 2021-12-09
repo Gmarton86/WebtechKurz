@@ -14,7 +14,7 @@ export default function Header() {
 
   function getCompleted() {
     completedLevels = JSON.parse(localStorage.getItem('CompletedLevels'))
-    if(completedLevels) {
+    if (completedLevels) {
       setCompleted(completedLevels.length)
     } else {
       setCompleted(0)

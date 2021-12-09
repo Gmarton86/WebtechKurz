@@ -171,12 +171,11 @@ function Game() {
       } else {
         return
       }
-
     }
   }
 
   return (
-    <div className="mr-6 ml-6 p-2 bg-gray-900 border-4 rounded-md flex align-center justify-center flex-col">
+    <div className="mr-6 ml-6 p-2 bg-gray-900 border-4 rounded-md flex align-center justify-center flex-col pb-5">
       <div className="font-bold flex-1 text-center mb-2 text-white">
         <p>{question}</p>
       </div>
