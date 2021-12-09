@@ -73,7 +73,7 @@ function Game() {
   }, [])
 
   function setReduxLevel() {
-    console.log(currentLevel)
+    
     dispatch(setId(data[currentLevel].id))
     dispatch(setQuestion(data[currentLevel].question))
     dispatch(setHelper(data[currentLevel].helper))
@@ -81,7 +81,7 @@ function Game() {
     dispatch(setWrongAnswer1(data[currentLevel].wrongAnswer1))
     dispatch(setWrongAnswer2(data[currentLevel].wrongAnswer2))
     dispatch(setAnswers([createArrayOfAnswers(), []]))
-    console.log(currentLevel)
+    
   }
 
   function createArrayOfAnswers() {
@@ -115,7 +115,6 @@ function Game() {
     if (completedLevels) {
       var result = completedLevels.find((item) => item === randomLvl)
       while (result !== undefined) {
-        console.log(completedLevels.length + ' = ' + data.length)
         if (completedLevels.length <= data.length) {
           randomLvl = Math.floor(Math.random() * data.length)
           // eslint-disable-next-line no-loop-func
