@@ -7,9 +7,9 @@ export default function Footer() {
         <div className="sm:w-2/3 text-center py-6">
           <p className="text-sm text-white font-bold mb-2">© 2021 by Erik Zurvalec</p>
           <p className="text-xs text-white mb-2">
-            Predstavujem Vám hru, kde musite správne zodpovedať otázku. Otázka sa dá zodpovedať
+            Predstavujem Vám kurz, kde musite správne zodpovedať otázku pre pokračovanie. Otázka sa dá zodpovedať
             pomocou drag and drop funkcie. Okno so správnou odpoveďou posuniete vpravo do vyznačenej
-            plochy. Po správnom pohybe okienka sa automaticky vygeneruje nová úloha. Po splnení
+            plochy. Po správnej odpovedi sa automaticky vygeneruje nová úloha. Po splnení
             všetkých úloh sa hra spúsťa od začiatku. Pomôcka sa zobrazí až keď máte nad ňou kurzor.
           </p>
         </div>
