@@ -1,24 +1,27 @@
 {
-    "short_name": "Kurz",
-    "name": "Webtech1 kurz",
-    "icons": [{
-            "src": "favicon.ico",
-            "sizes": "64x64",
-            "type": "image/x-icon"
-        },
-        {
-            "src": "logo192x192.png",
-            "type": "image/png",
-            "sizes": "192x192"
-        },
-        {
-            "src": "logo310x310.png",
-            "type": "image/png",
-            "sizes": "310x310"
-        }
-    ],
-    "start_url": ".",
-    "display": "standalone",
-    "theme_color": "#000000",
-    "background_color": "#ffffff"
+  "short_name": "Kurz",
+  "name": "Webtech1 kurz",
+  "icons": [
+    {
+      "src": "favicon.ico",
+      "sizes": "16x16",
+      "type": "image/x-icon"
+    },
+    {
+      "src": "logo192x192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "logo512x512.png",
+      "type": "image/png",
+      "sizes": "512x512",
+      "purpose": "any maskable"
+    }
+  ],
+  "start_url": "https://webte1.fei.stuba.sk/~xzurvalec/PWA_APP/",
+  "display": "standalone",
+  "theme_color": "#ffffff",
+  "background_color": "rgb(75 85 99)",
+  "prefer_related_applications": true
 }
