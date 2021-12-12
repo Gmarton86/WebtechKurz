@@ -16,12 +16,11 @@
       "src": "logo512x512.png",
       "type": "image/png",
       "sizes": "512x512",
-      "purpose": "any maskable"
+      "purpose": "maskable"
     }
   ],
-  "start_url": "https://webte1.fei.stuba.sk/~xzurvalec/PWA_APP/",
   "display": "standalone",
   "theme_color": "#ffffff",
-  "background_color": "rgb(75 85 99)",
-  "prefer_related_applications": true
+  "background_color": "#4B5563",
+  "start_url": "/~xzurvalec/PWA_APP/"
 }
